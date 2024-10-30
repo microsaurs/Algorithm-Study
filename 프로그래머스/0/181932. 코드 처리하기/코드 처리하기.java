@@ -11,11 +11,7 @@ class Solution {
                 answer += arr[i] + "";
             }
         }
-        
-        if (answer.equals("")) {
-            return "EMPTY";
-        }
-        
-        return answer;
+      
+        return answer.length() == 0 ? "EMPTY" : answer;
     }
 }
