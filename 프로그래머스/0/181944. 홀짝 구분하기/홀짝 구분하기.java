@@ -5,10 +5,10 @@ public class Solution {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         
-        if ( n % 2 == 0 ) {
-            System.out.println(n + " is even");
+        if(n % 2 == 0 ){
+            System.out.printf("%d is even", n);
         } else {
-            System.out.println(n + " is odd");
+            System.out.printf("%d is odd", n);
         }
     }
 }
