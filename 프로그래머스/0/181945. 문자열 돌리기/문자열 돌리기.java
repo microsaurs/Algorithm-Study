@@ -6,8 +6,8 @@ public class Solution {
         String a = sc.next();
         
         for(int i=0; i<a.length(); i++) {
-            char b = a.charAt(i);
-            System.out.println(b);
+            char c = a.charAt(i);
+            System.out.println(c);
         }
     }
 }
