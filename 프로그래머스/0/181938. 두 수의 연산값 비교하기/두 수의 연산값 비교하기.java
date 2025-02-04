@@ -1,7 +1,8 @@
 class Solution {
     public int solution(int a, int b) {
-        int i = Integer.parseInt(""+a+b);
-        int j = 2 * a * b;
-        return i >= j ? i : j;
+        int ab = Integer.parseInt(Integer.toString(a).concat(Integer.toString(b)));
+        int ba = 2*a*b;
+        
+        return ab >= ba ? ab : ba;
     }
 }
