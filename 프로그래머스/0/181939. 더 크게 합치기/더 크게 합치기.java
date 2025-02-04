@@ -1,10 +1,8 @@
 class Solution {
     public int solution(int a, int b) {
-        int i = Integer.parseInt(Integer.toString
-                                 (a) + Integer.toString(b));
-        int j = Integer.parseInt(String.valueOf(b) + String.valueOf(a));
+        String ab = Integer.toString(a).concat(Integer.toString(b));
+        String ba = Integer.toString(b).concat(Integer.toString(a));
         
-        return i >= j ? i : j;
-        
+        return Integer.parseInt(ab) > Integer.parseInt(ba) ? Integer.parseInt(ab) : Integer.parseInt(ba);
     }
 }
