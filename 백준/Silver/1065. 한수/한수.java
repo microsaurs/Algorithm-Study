@@ -7,28 +7,19 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
     
-        int cnt = 0;
+        int cnt = Math.min(N, 99);
     
-        for(int i=1; i<=N; i++) {
-            String s = String.valueOf(i);
+        for(int i = 100; i < 1000 && i <= N; i++) {
             int a = i % 10;
             int b = (i/10) % 10;
-            int c = (i/100)%10;
-            int d = i/1000;
-    
-            if (s.length() <= 2) {
-                cnt++;
-            } else if (s.length() == 3) {
-                if(b-a == c-b) {
-                    cnt++;
-                }
-            } else {
-                if(d-c == c-b && c-b == b-a) {
-                    cnt++;
-                }
-            }
-        }
+            int c = (i/100) % 10;
 
-    System.out.println(cnt);
+            if(b-a == c-b) {
+                cnt++;
+            }
+            
+        }
+        
+        System.out.println(cnt);
     }
 }
