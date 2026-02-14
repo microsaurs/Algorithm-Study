@@ -1,31 +1,30 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Stack;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
 
         Stack<Integer> stack = new Stack<>();
+        StringBuilder sb = new StringBuilder();
 
-        for(int i=0; i<N; i++) {
+        for (int i = 0; i < N; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
             String cmd = st.nextToken();
 
-            if(cmd.equals("push")) {
+            if (cmd.equals("push")) {
                 stack.push(Integer.parseInt(st.nextToken()));
-            } else if(cmd.equals("top")) {
-                System.out.println(stack.isEmpty() ? -1 : stack.peek());
-            } else if(cmd.equals("pop")) {
-                System.out.println(stack.isEmpty() ? -1 : stack.pop());
-            } else if(cmd.equals("size")) {
-                System.out.println(stack.size());
-            } else if(cmd.equals("empty")) {
-                System.out.println(stack.isEmpty() ? 1 : 0);
+            } else if (cmd.equals("top")) {
+                sb.append(stack.isEmpty() ? -1 : stack.peek()).append('\n');
+            } else if (cmd.equals("pop")) {
+                sb.append(stack.isEmpty() ? -1 : stack.pop()).append('\n');
+            } else if (cmd.equals("size")) {
+                sb.append(stack.size()).append('\n');
+            } else if (cmd.equals("empty")) {
+                sb.append(stack.isEmpty() ? 1 : 0).append('\n');
             }
         }
-    } 
+        System.out.print(sb.toString());
+    }
 }
