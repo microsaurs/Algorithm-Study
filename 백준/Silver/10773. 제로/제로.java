@@ -4,12 +4,12 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int K = Integer.parseInt(br.readLine());
+        int k = Integer.parseInt(br.readLine());
 
         Deque<Long> dq = new ArrayDeque<>();
-        long sum = 0;
+        int sum = 0;
 
-        for(int i=0; i<K; i++) {
+        for(int i=0; i<k; i++) {
             long n = Long.parseLong(br.readLine());
             if(n != 0) {
                 dq.push(n);
