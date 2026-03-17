@@ -3,7 +3,7 @@ class Solution {
         int mw = 0;
         int mh = 0;
         
-        for (int[] i : sizes) {
+        for(int[] i : sizes) {
             int w = Math.max(i[0], i[1]);
             int h = Math.min(i[0], i[1]);
             
@@ -11,6 +11,6 @@ class Solution {
             mh = Math.max(mh, h);
         }
         
-        return mw * mh;
+        return mw*mh;
     }
 }
