@@ -1,22 +1,26 @@
+import java.util.*;
+
 class Solution {
     public String solution(String s) {
+        int index = 0;
         StringBuilder sb = new StringBuilder();
-        int idx = 0; // 단어 내 인덱스
-
-        for (char c : s.toCharArray()) {
-            if (c == ' ') {
+        
+        for(int i=0; i<s.length(); i++) {
+            char c = s.charAt(i);
+            if(c == ' ') {
                 sb.append(c);
-                idx = 0;
+                index = 0;
             } else {
-                if (idx % 2 == 0) {
-                    sb.append(Character.toUpperCase(c));
-                } else {
+                if(index % 2 == 1) {
                     sb.append(Character.toLowerCase(c));
+                    index ++;
+                } else {
+                    sb.append(Character.toUpperCase(c));
+                    index ++;
                 }
-                idx++;
             }
         }
-
+        
         return sb.toString();
     }
 }
