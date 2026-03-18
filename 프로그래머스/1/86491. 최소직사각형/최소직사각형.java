@@ -1,7 +1,9 @@
+import java.util.*;
+
 class Solution {
     public int solution(int[][] sizes) {
-        int mw = 0;
         int mh = 0;
+        int mw = 0;
         
         for(int[] i : sizes) {
             int w = Math.max(i[0], i[1]);
