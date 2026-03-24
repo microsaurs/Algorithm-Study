@@ -6,23 +6,25 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String s = br.readLine();
 
-        Deque<Character> stack = new ArrayDeque<>();
+        Deque<Character> dq = new ArrayDeque<>();
         int answer = 0;
 
-        for(int i=0; i<s.length(); i++) {
+        for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-            if(c == '(') {
-                stack.push(c);
-            } else {
-                stack.pop();
 
-                if(s.charAt(i-1) == '(') {
-                    answer += stack.size();
+            if (c == '(') {
+                dq.addLast(c);
+            } else {
+                dq.removeLast();
+
+                if (s.charAt(i - 1) == '(') {
+                    answer += dq.size();
                 } else {
                     answer += 1;
                 }
             }
         }
+
         System.out.println(answer);
     }
 }
