@@ -2,55 +2,56 @@ import java.util.*;
 
 class Solution {
     public String solution(int[] numbers, String hand) {
+        // 시작 손가락 위치
+        int leftR = 3, leftC = 0;
+        int rightR = 3, rightC = 2;
+        
         StringBuilder sb = new StringBuilder();
         
-        // 시작 위치 지정
-        int leftR=3, leftC=0;
-        int rightR=3, rightC=2;
-        
-        for(int n:numbers) {
+        // 타겟 번호 반복문
+        for(int num : numbers) {
+            // 타겟 번호 위치
             int targetR = 0;
             int targetC = 0;
-            
-            // 숫자 좌표 구하기
-            if(n==0) {
-                targetR=3;
-                targetC=1;
+                
+            if(num == 0) {
+                targetR = 3;
+                targetC = 1;
             } else {
-                targetR=(n-1)/3;
-                targetC=(n-1)%3;
+                targetR = (num-1) / 3;
+                targetC = (num-1) % 3;
             }
             
-            // 왼쪽 열
-            if(n==1 || n==4 || n==7) {
-                sb.append("L");
+            // 현재 손 위치 변경 and result 추가
+            if(num == 1 || num == 4 || num == 7) {
                 leftR = targetR;
                 leftC = targetC;
-            } else if (n==3 || n==6 || n==9) {
-                sb.append("R");
+                sb.append("L");
+            } else if(num == 3 || num == 6 || num == 9) {
                 rightR = targetR;
                 rightC = targetC;
-            } else {
-                int leftDist = Math.abs(leftR-targetR) + Math.abs(leftC - targetC);
-                int RightDist = Math.abs(rightR-targetR) + Math.abs(rightC - targetC);
+                sb.append("R");
+            } else { // 중간 숫자인 경우 거리 계산 로직
+                int distL = Math.abs(targetR - leftR) + Math.abs(targetC - leftC);
+                int distR = Math.abs(targetR - rightR) + Math.abs(targetC - rightC);
                 
-                if(leftDist<RightDist) {
-                    sb.append("L");
+                if(distL < distR) {
                     leftR = targetR;
                     leftC = targetC;
-                } else if(leftDist>RightDist) {
-                    sb.append("R");
+                    sb.append("L");
+                } else if(distL > distR) {
                     rightR = targetR;
                     rightC = targetC;
+                    sb.append("R");
                 } else {
                     if(hand.equals("right")) {
-                        sb.append("R");
                         rightR = targetR;
                         rightC = targetC;
+                        sb.append("R");
                     } else {
-                        sb.append("L");
                         leftR = targetR;
                         leftC = targetC;
+                        sb.append("L");
                     }
                 }
             }
