@@ -2,38 +2,34 @@ import java.util.*;
 
 class Solution {
     public int solution(int[] priorities, int location) {
-        Queue<int[]> queue = new LinkedList<>();
-        for (int i = 0; i < priorities.length; i++) {
-            queue.offer(new int[]{priorities[i], i});
+        Deque<int[]> dq = new ArrayDeque<>();
+        
+        for(int i=0; i<priorities.length; i++) {
+            dq.offer(new int[]{i, priorities[i]});
         }
         
-        int executionOrder = 0;
+        int count = 0;
         
-        while (!queue.isEmpty()) {
-            int[] current = queue.poll();
-            int currentPriority = current[0];
-            int currentIndex = current[1];
+        while(!dq.isEmpty()) {
+            int[] curr = dq.poll();
+            boolean hasHigher = false;
             
-            boolean hasHigherPriority = false;
-            for (int[] process : queue) {
-                if (process[0] > currentPriority) {
-                    hasHigherPriority = true;
+            for(int[] doc : dq) {
+                if(doc[1] >curr[1]) {
+                    hasHigher = true;
                     break;
                 }
             }
             
-            if (hasHigherPriority) {
-                queue.offer(current);
-            } 
-
-            else {
-                executionOrder++;
-                if (currentIndex == location) {
-                    return executionOrder;
+            if(hasHigher) {
+                dq.offer(curr);
+            } else {
+                count++;
+                if(curr[0] == location) {
+                    return count;
                 }
             }
         }
-        
-        return -1;
+        return count;
     }
 }
