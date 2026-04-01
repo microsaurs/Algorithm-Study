@@ -9,25 +9,26 @@ class Solution {
             if(Character.isDigit(c)) {
                 idx++;
                 
-                if(c == '1' && i+1 <dartResult.length() && dartResult.charAt(i+1) == '0') {
+                if(c == '1' && i+1 < dartResult.length() &&dartResult.charAt(i+1) == '0') {
                     result[idx] = 10;
                     i++;
                 } else {
                     result[idx] = c-'0';
                 }
             } else if(c == 'D') {
-                result[idx] = result[idx] * result[idx];
+                result[idx] *= result[idx];
             } else if(c == 'T') {
-                result[idx] = result[idx] * result[idx] * result[idx];
-            } else if (c == '*') {
+                result[idx] = result[idx]*result[idx]*result[idx];
+            } else if(c == '*') {
                 result[idx] *= 2;
                 if(idx > 0) {
-                    result[idx - 1] *= 2;
+                    result[idx-1] *= 2;
                 }
-            } else if (c == '#') {
+            } else if(c == '#') {
                 result[idx] *= -1;
             }
         }
+        
         return result[0] + result[1] + result[2];
     }
 }
