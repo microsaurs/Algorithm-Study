@@ -2,30 +2,22 @@ import java.util.*;
 
 class Solution {
     public int[] solution(int[] progresses, int[] speeds) {
-        Deque<Integer> dq = new ArrayDeque<>();
-        
-        for(int i=0; i<progresses.length; i++) {
-            int remain = 100 - progresses[i];
-            int day = (remain + speeds[i] - 1) / speeds[i];
-            dq.add(day);
-        }
-        
-        List<Integer> result = new ArrayList<>();
-        int curr = dq.pop();
+        ArrayList<Integer> list = new ArrayList<>();
+        int curr = ((100-progresses[0]) + speeds[0] - 1) / speeds[0];
         int count = 1;
         
-        while(!dq.isEmpty()) {
-            if(dq.peek() <= curr) {
-                dq.pop();
+        for(int i=1; i<progresses.length; i++) {
+            int day = ((100-progresses[i]) + speeds[i] - 1) / speeds[i];
+            if(day <= curr) {
                 count++;
             } else {
-                result.add(count);
-                curr = dq.pop();
+                list.add(count);
+                curr = day;
                 count = 1;
             }
         }
-        result.add(count);
+        list.add(count);
         
-        return result.stream().mapToInt(i -> i).toArray();
+        return list.stream().mapToInt(i -> i).toArray();
     }
 }
