@@ -1,20 +1,24 @@
+import java.util.*;
+
 class Solution {
     boolean solution(String s) {
-        int count = 0;
+        Deque<Character> dq = new ArrayDeque<>();
+        boolean answer = true;
         
-        for (char c : s.toCharArray()) {
-            if (c == '(') {
-                count++;
-            } else if (c == ')') {
-                count--;
-                
-                if (count < 0) {
-                    return false;
+        for(char c : s.toCharArray()) {
+            if(c == '(') {
+                dq.push(c);
+            } else {
+                if(!dq.isEmpty() && dq.peek() == '(') {
+                    dq.pop();
+                } else {
+                    answer = false;
                 }
             }
         }
         
-        return count == 0;
-
+        if(dq.size() != 0) answer = false;
+        
+        return answer;
     }
 }
