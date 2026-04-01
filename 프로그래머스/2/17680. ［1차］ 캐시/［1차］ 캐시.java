@@ -2,9 +2,8 @@ import java.util.*;
 
 class Solution {
     public int solution(int cacheSize, String[] cities) {
-        int time = 0;
-        
         LinkedList<String> cache = new LinkedList<>();
+        int time = 0;
         
         for(String city : cities) {
             city = city.toLowerCase();
@@ -14,18 +13,16 @@ class Solution {
                 continue;
             }
             
-            // cache hit
-            if(cache.contains(city)) {
-                cache.remove(city);
-                cache.add(city);
-                time += 1;
-            }
-            else {
+            if(!cache.contains(city)) {
                 if(cache.size() == cacheSize) {
                     cache.removeFirst();
                 }
-                cache.add(city);
                 time += 5;
+                cache.add(city);
+            } else {
+                time += 1;
+                cache.remove(city);
+                cache.add(city);
             }
         }
         return time;
