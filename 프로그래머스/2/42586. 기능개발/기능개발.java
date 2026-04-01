@@ -2,28 +2,28 @@ import java.util.*;
 
 class Solution {
     public int[] solution(int[] progresses, int[] speeds) {
+        Deque<Integer> dq = new ArrayDeque<>();
         
-        int[] days = new int[progresses.length];
-        
-        for (int i = 0; i < progresses.length; i++) {
-            int remaining = 100 - progresses[i];
-            days[i] = (remaining + speeds[i] - 1) / speeds[i];
+        for(int i=0; i<progresses.length; i++) {
+            int remain = 100 - progresses[i];
+            int day = (remain + speeds[i] - 1) / speeds[i];
+            dq.add(day);
         }
         
         List<Integer> result = new ArrayList<>();
-        int maxDay = days[0];
+        int curr = dq.pop();
         int count = 1;
         
-        for (int i = 1; i < days.length; i++) {
-            if (days[i] <= maxDay) {
+        while(!dq.isEmpty()) {
+            if(dq.peek() <= curr) {
+                dq.pop();
                 count++;
             } else {
                 result.add(count);
-                maxDay = days[i];
+                curr = dq.pop();
                 count = 1;
             }
         }
-        
         result.add(count);
         
         return result.stream().mapToInt(i -> i).toArray();
