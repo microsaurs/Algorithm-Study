@@ -2,44 +2,32 @@ import java.util.*;
 
 class Solution {
     public String[] solution(String[] record) {
-        // user id, nickname 저장 (수정까지 반영)
-        HashMap<String, String> user = new HashMap<>();
+        Map<String, String> users = new HashMap<>();
         
-        for(String r : record) {
-            String[] arr = r.split(" ");
-            String act = arr[0];
-            String id = arr[1];
-            if (act.equals("Enter") || act.equals("Change")) {
-                user.put(id, arr[2]);
+        // 닉네임 최신화
+        for(String s : record) {
+            String[] arr = s.split(" ");
+            String action = arr[0];
+            
+            if(action.equals("Enter") || action.equals("Change")) {
+                users.put(arr[1], arr[2]);
             }
         }
         
-        // result 메세지 개수 세기
-        int count = 0;
-        for (String r : record) {
-            String action = r.split(" ")[0];
-            if (action.equals("Enter") || action.equals("Leave")) {
-                count++;
-            }
-        }
+        List<String> list = new ArrayList<>();
         
-        // 결과 배열 담기
-        String[] result = new String[count];
-        int index = 0;
-        
-        for(String log : record) {
-            String[] arr = log.split(" ");
+        for(String s : record) {
+            String[] arr = s.split(" ");
             String action = arr[0];
             String id = arr[1];
-            String nickname = user.get(id);
             
-            if (action.equals("Enter")) {
-                result[index++] = nickname + "님이 들어왔습니다.";
-            } else if (action.equals("Leave")) {
-                result[index++] = nickname + "님이 나갔습니다.";
+            if(action.equals("Enter")) {
+                list.add(users.get(id) + "님이 들어왔습니다.");
+            } else if(action.equals("Leave")) {
+                list.add(users.get(id) + "님이 나갔습니다.");
             }
         }
         
-        return result;
+        return list.toArray(new String[0]);
     }
 }
