@@ -6,30 +6,33 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
 
-        Deque<Integer> stack = new ArrayDeque<>();
+        int[] arr = new int[n];
+        for(int i=0; i<n; i++) {
+            arr[i] = Integer.parseInt(br.readLine());
+        }
+
+        Deque<Integer> dq = new ArrayDeque<>();
         StringBuilder sb = new StringBuilder();
 
-        int num = 1;
-        boolean possible = true;
+        int idx = 1;
+        boolean success = true;
 
-        for(int i=1; i<=n; i++) {
-            int target = Integer.parseInt(br.readLine());
-
-            while(num <= target) {                
-                    stack.push(num++);
-                    sb.append('+').append('\n');
+        for(int target : arr) {
+            while(idx <= target) {
+                dq.push(idx++);
+                sb.append('+').append('\n');
             }
-            
-            if(!stack.isEmpty() && stack.peek() == target) {
-                stack.pop();
+
+            if(!dq.isEmpty() && dq.peek() == target) {
+                dq.pop();
                 sb.append('-').append('\n');
             } else {
-                possible = false;
+                success = false;
                 break;
             }
         }
 
-        System.out.println(possible ? sb.toString() : "NO");
-
+        
+        System.out.println(success ? sb : "NO");
     }
 }
