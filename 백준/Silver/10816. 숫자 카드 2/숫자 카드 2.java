@@ -2,15 +2,15 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
         StringTokenizer st = new StringTokenizer(br.readLine());
-        
+
         HashMap<Integer, Integer> cards = new HashMap<>();
         for(int i=0; i<n; i++) {
             int num = Integer.parseInt(st.nextToken());
-            cards.put(num, cards.getOrDefault(num, 0) + 1);
+            cards.put(num, cards.getOrDefault(num,  0)+1);
         }
 
         int m = Integer.parseInt(br.readLine());
@@ -22,7 +22,7 @@ public class Main {
             int num = Integer.parseInt(st.nextToken());
             sb.append(cards.getOrDefault(num, 0)).append(' ');
         }
-        
+
         System.out.println(sb);
     }
 }
