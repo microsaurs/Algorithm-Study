@@ -2,33 +2,35 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
+        
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
 
-        HashSet<String> hear = new HashSet<>();
-
+        Set<String> set = new HashSet<>();
+        ArrayList<String> answer = new ArrayList<>();
+        
         for(int i=0; i<n; i++) {
-            hear.add(br.readLine());
+            set.add(br.readLine());
         }
 
-        ArrayList<String> result = new ArrayList<>();
-
-        for (int i = 0; i < m; i++) {
+        for(int i=0; i<m; i++) {
             String name = br.readLine();
-            if (hear.contains(name)) {
-                result.add(name);
+            if(set.contains(name)) {
+                answer.add(name);
             }
         }
 
-        Collections.sort(result);
+        Collections.sort(answer);
 
-        System.out.println(result.size());
-
-        for (String name : result) {
-            System.out.println(name);
+        StringBuilder sb = new StringBuilder();
+        sb.append(answer.size()).append('\n');
+        for(String name : answer) {
+            sb.append(name).append('\n');
         }
+
+        System.out.println(sb);
     }
 }
